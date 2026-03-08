@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import connectDB from './config/db.js';
 import { verifyFirebaseToken } from './middlewares/auth.js';
+import authRoutes from './routes/authRoutes.js';
+import profileRoutes from './routes/profileRoutes.js';
 
 // Load env vars
 dotenv.config();
@@ -19,6 +21,8 @@ app.use(express.json());
 app.use(cors());         
 app.use(helmet());       
 app.use(morgan('dev'));  
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/profiles', profileRoutes);
 
 // Public Health Check Route
 app.get('/api/v1/health', (req, res) => {
