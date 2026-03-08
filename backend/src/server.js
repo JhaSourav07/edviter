@@ -7,6 +7,9 @@ import connectDB from './config/db.js';
 import { verifyFirebaseToken } from './middlewares/auth.js';
 import authRoutes from './routes/authRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
+import gigRoutes from './routes/gigRoutes.js';
+import applicationRoutes from './routes/applicationRoutes.js';
+import deliveryRoutes from './routes/deliveryRoutes.js';
 
 // Load env vars
 dotenv.config();
@@ -23,6 +26,9 @@ app.use(helmet());
 app.use(morgan('dev'));  
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/profiles', profileRoutes);
+app.use('/api/v1/gigs', gigRoutes);
+app.use('/api/v1/applications', applicationRoutes);
+app.use('/api/v1/jobs/:jobId/deliveries', deliveryRoutes);
 
 // Public Health Check Route
 app.get('/api/v1/health', (req, res) => {
